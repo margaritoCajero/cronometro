@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<!-- AVISO CONTADOR -->
+<div align="center">
+<SCRIPT LANGUAGE="JavaScript">
+	function cronometro() 
+	{
+		fecha_actual = new Date();// obtengo la fecha de hoy 
+		//alert(fecha_actual); 
+		
+		//Fecha objetivo
+		fechaObjetivo = new Date("Dec 31 2014 23:59:59");//seleccionamos una fecha objetivo se la paso como prarametro a el metodo DATE
+		
+		//se hace la resta de la fecha objetivo menos la fecha actual
+		days = (fechaObjetivo - fecha_actual) / 1000 / 60 / 60 / 24;
+		daysRound = Math.floor(days);
+		hours = (fechaObjetivo - fecha_actual) / 1000 / 60 / 60 - (24 * daysRound);
+		hoursRound = Math.floor(hours);
+		minutes = (fechaObjetivo - fecha_actual) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+		minutesRound = Math.floor(minutes);
+		seconds = (fechaObjetivo - fecha_actual) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+		secondsRound = Math.round(seconds);
+		sec = (secondsRound == 1) ? " segundo" : " segundos";// se compara con un if para mostrar indubidual o plural
+		min = (minutesRound == 1) ? " minuto" : " minutos, ";
+		hr = (hoursRound == 1) ? " hora" : " horas, ";
+		day = (daysRound == 1)  ? " d&iacute;a" : " d&iacute;as, "
+		document.getElementById("contenedor").innerHTML = "Faltan " + daysRound  + day + hoursRound + hr + minutesRound + min + secondsRound + sec + " <br />para el 2015";//enviamos el resulado ha el contenedor que creamos en el html
+		newtime = window.setTimeout("cronometro();", 1000);//con la funcion setTimeout mando llamar el cronometro para que se este actualizando
+	}
+</script>
+<body onLoad="cronometro()">
+</div>
+<p style="color:#000000;text-align:center;font-size:18px;" id="contenedor"></p><!-- creamos el contenedor para presentar el reloj en este caso un parrafp-->
+
+</html>
